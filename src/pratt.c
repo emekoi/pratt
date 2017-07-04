@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "dmt/dmt.h"
+#include "lib/dmt/dmt.h"
 #include "pratt.h"
 #include "util.h"
 

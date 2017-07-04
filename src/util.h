@@ -29,8 +29,6 @@
 #define LERP(a, b, p)   ((a) + ((b) - (a)) * (p))
 
 
-#define GCINFO(clean, dirty) do { \
-  printf("[GC %s]: CLEAN: %ld values \tDIRTY: %ld values \tTHRESHOLD: %ld values\n", __TIME__, clean, dirty, clean * 2); \
-} while(0);
+int string_casencmp(const char *s1, const char *s2, size_t n);
 
 #endif
