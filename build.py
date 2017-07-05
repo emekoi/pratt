@@ -6,6 +6,7 @@ COMPILER = "gcc"
 INCLUDE = [  ]
 SOURCE = [
   "src/*.c",
+  "src/lib/fs/*.c",
   "src/lib/dmt/*.c",
   "src/lib/vec/*.c",
 ]

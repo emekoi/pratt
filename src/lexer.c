@@ -7,6 +7,8 @@ static pkeyword_t keywords[] = {
   {"if",       2, TOK_KEY_IF},
   {"in",       2, TOK_KEY_IN},
   {"is",       2, TOK_KEY_IS},
+  {"or",       2, TOK_KEY_OR},
+  {"and",      3, TOK_KEY_AND},
   {"for",      3, TOK_KEY_FOR},
   {"nil",      3, TOK_KEY_NIL},
   {"var",      3, TOK_KEY_VAR},
@@ -96,16 +98,39 @@ ptoken_t error_token(const char *msg) {
 void skip_whitespace() {
   for (;;) {
     char c = peek();
+
+    /* rxi */
     while (c && strchr(WHITESPACE, c)) {
       if (c == '\n') Lexer.line++;
       advance();
-      continue;
+      c = peek();
     }
     if (c == '/' && next() == '/') {
       while (peek() != '\n' && !is_at_end()) advance();
-    } else {
-      return;
     }
+    return;
+
+    /* munificent */
+    // switch (c) {
+    //   case ' ':
+    //   case '\t':
+    //   case '\r':
+    //     advance();
+    //     break;
+    //   case '\n':
+    //     Lexer.line++;
+    //     advance();
+    //     break;
+    //   case '/':
+    //     if (next() == '/') {
+    //       while (peek() != '\n' && !is_at_end()) advance();
+    //     } else {
+    //       return;
+    //     }
+    //     break;
+    //   default:
+    //     return;
+    // }
   }
 }
 
@@ -164,6 +189,7 @@ ptoken_t lexer_get_token() {
   if (is_alpha(c)) return indentifier();
   if (is_digit(c)) return number();
 
+
   switch (c) {
     case '(': return make_token(TOK_OP_LEFT_PAREN);
     case ')': return make_token(TOK_OP_RIGHT_PAREN);
@@ -207,11 +233,9 @@ ptoken_t lexer_get_token() {
       if (match('=')) return make_token(TOK_OP_NOT_EQUAL);
       return make_token(TOK_OP_NOT);
     case '|':
-      if (match('|')) return make_token(TOK_OP_OR);
       if (match('=')) return make_token(TOK_OP_BIT_OR_ASSIGN);
       return make_token(TOK_OP_BIT_OR);
     case '&':
-      if (match('&')) return make_token(TOK_OP_AND);
       if (match('=')) return make_token(TOK_OP_BIT_AND_ASSIGN);
       return make_token(TOK_OP_BIT_AND);
     case '^':

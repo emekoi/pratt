@@ -32,4 +32,9 @@
 
 int string_casencmp(const char *s1, const char *s2, size_t n);
 
+char *dirname(char *str);
+char *basename(char *str);
+char *strip(char *s);
+char *concat(char *str, ...);
+
 #endif

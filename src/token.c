@@ -31,8 +31,10 @@ const char *token_name(ptoken_type_t token) {
     case TOK_KEY_CASE: return "case";
     case TOK_KEY_NIL: return "nil";
     case TOK_KEY_IS: return "is";
-    case TOK_KEY_DO: return "do";
-    case TOK_KEY_END: return "end";
+    case TOK_KEY_AND: return "and";
+    case TOK_KEY_OR: return "or";
+    // case TOK_KEY_DO: return "do";
+    // case TOK_KEY_END: return "end";
 
     /* operators */
     case TOK_OP_ADD: return "+";
@@ -51,12 +53,10 @@ const char *token_name(ptoken_type_t token) {
     case TOK_OP_MUL_ASSIGN: return "*=";
     case TOK_OP_MOD_ASSIGN: return "%=";
     case TOK_OP_NOT: return "!";
-    case TOK_OP_AND: return "&&";
-    case TOK_OP_OR: return "||";
     case TOK_OP_EQUAL: return "==";
     case TOK_OP_NOT_EQUAL: return "!=";
-    case TOK_OP_RANGE_INCLUDED: return "...";
-    case TOK_OP_RANGE_EXCLUDED: return "..<";
+    case TOK_OP_RANGE_INCLUDED: return "..";
+    case TOK_OP_RANGE_EXCLUDED: return "...";
     case TOK_OP_TERNARY: return "?";
     case TOK_OP_SHIFT_LEFT: return "<<";
     case TOK_OP_SHIFT_RIGHT: return ">>";
