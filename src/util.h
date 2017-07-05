@@ -28,6 +28,7 @@
 #define CLAMP(x, a, b)  (MAX(a, MIN(x, b)))
 #define LERP(a, b, p)   ((a) + ((b) - (a)) * (p))
 
+#define tostring(e) #e
 
 int string_casencmp(const char *s1, const char *s2, size_t n);
 

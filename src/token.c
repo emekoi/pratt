@@ -88,20 +88,17 @@ const char *token_name(ptoken_type_t token) {
   return "UNRECOGNIZED TOKEN";
 }
 
-ptoken_type_t token_keyword(const char *buffer, int32_t len) {
+ptoken_type_t token_keyword(const char *buffer, size_t len) {
   switch (len) {
 		case 2:
 			if (string_casencmp(buffer, "if", len) == 0) return TOK_KEY_IF;
 			if (string_casencmp(buffer, "in", len) == 0) return TOK_KEY_IN;
-			if (string_casencmp(buffer, "or", len) == 0) return TOK_OP_OR;
 			if (string_casencmp(buffer, "is", len) == 0) return TOK_KEY_IS;
 			break;
 
 		case 3:
 			if (string_casencmp(buffer, "for", len) == 0) return TOK_KEY_FOR;
 			if (string_casencmp(buffer, "var", len) == 0) return TOK_KEY_VAR;
-			if (string_casencmp(buffer, "and", len) == 0) return TOK_OP_AND;
-			if (string_casencmp(buffer, "not", len) == 0) return TOK_OP_NOT;
       if (string_casencmp(buffer, "nil", len) == 0) return TOK_KEY_NIL;
 			break;
 

@@ -106,6 +106,6 @@ typedef struct {
 } pkeyword_t;
 
 const char *token_name(ptoken_type_t token);
-ptoken_type_t token_keyword(const char *buffer, int32_t len);
+ptoken_type_t token_keyword(const char *buffer, size_t len);
 
 #endif

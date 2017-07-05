@@ -1,6 +1,7 @@
 #include <string.h>
 #include "lexer.h"
 #include "token.h"
+#include "util.h"
 
 static pkeyword_t keywords[] = {
   {"if",       2, TOK_KEY_IF},
@@ -78,7 +79,6 @@ ptoken_t make_token(ptoken_type_t t) {
   token.start = Lexer.token_start;
   token.len = (size_t)(Lexer.current - Lexer.token_start);
   token.line = Lexer.line;
-
   return token;
 }
 
@@ -88,7 +88,6 @@ ptoken_t error_token(const char *msg) {
   token.start = msg;
   token.len = strlen(msg);
   token.line = Lexer.line;
-
   return token;
 }
 
@@ -191,9 +190,17 @@ ptoken_t lexer_get_token() {
       if (match('=')) return make_token(TOK_OP_EQUAL);
       return make_token(TOK_OP_ASSIGN);
     case '<':
+      if (match('<'))
+        if (match('='))
+          return make_token(TOK_OP_SHIFT_LEFT_ASSIGN);
+        return make_token(TOK_OP_SHIFT_LEFT);
       if (match('=')) return make_token(TOK_OP_LESS_EQUAL);
       return make_token(TOK_OP_LESS);
     case '>':
+      if (match('>'))
+        if (match('='))
+          return make_token(TOK_OP_SHIFT_RIGHT_ASSIGN);
+        return make_token(TOK_OP_SHIFT_RIGHT);
       if (match('=')) return make_token(TOK_OP_GREATER_EQUAL);
       return make_token(TOK_OP_GREATER);
     case '!':
