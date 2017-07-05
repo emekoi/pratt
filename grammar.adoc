@@ -1,0 +1,54 @@
+= grammar
+
+---
+
+#### reference
+
+```
+rule → (terminal/nonterminal operator)+
+```
+
+|======
+|operator|meaning
+|```\|```| denotes a series of productions options.
+|```+``` | matches one or more productions.
+|```*``` | matches zero or more productions.
+|```?``` | optional production.
+|```()```| groups productions.
+|======
+
+#### example
+
+```
+breakfast → protein ( "and" protein )* ( "with" bread )?
+          | bread
+
+protein   → "bacon"
+          | "sausage"
+          | ( "scrambled"
+            | "poached"
+            | "fried") "eggs"
+
+bread     → ( "burnt" | "not burnt" | "buttered" )
+          ( "toast"
+          | "biscuits"
+          | "English muffin" )
+```
+
+#### pratt syntax
+##### miniature
+
+```
+experssion → literal
+           | unary
+           | binary
+           | grouping
+
+literal    → NUMBER | STRING | "true" | "false" | "nil"
+grouping   → "(" expression ")"
+unary      → ( "-" | "!" ) expression
+binary     → expression operator expression
+operator   → "==" | "!=" | "<" | "<" | "<=" | ">="
+           | ">>" | "<<" | "~" | "&" | "^" | "|"
+           | "+" | "-" | "/" | "*" | "%"
+```
