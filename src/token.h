@@ -1,6 +1,7 @@
 #ifndef __PRATT_TOKEN__
 #define __PRATT_TOKEN__
 
+#include <stddef.h>
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -93,9 +94,16 @@ typedef enum {
 
 typedef struct {
   ptoken_type_t type;
-  char *value;
-  int line;
+  const char *start;
+  size_t len;
+  size_t line;
 } ptoken_t;
+
+typedef struct {
+  const char* name;
+  size_t len;
+  ptoken_type_t type;
+} pkeyword_t;
 
 const char *token_name(ptoken_type_t token);
 ptoken_type_t token_keyword(const char *buffer, int32_t len);

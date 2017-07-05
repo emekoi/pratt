@@ -2,6 +2,7 @@
 #include "token.h"
 #include "util.h"
 
+
 const char *token_name(ptoken_type_t token) {
   switch (token) {
     case TOK_EOF: return "EOF";
