@@ -106,7 +106,6 @@ typedef struct {
   const char* name;
   size_t len;
   ptoken_type_t type;
-  unsigned hash;
 } pkeyword_t;
 
 const char *token_name(ptoken_type_t token);
