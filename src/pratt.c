@@ -54,9 +54,9 @@ int main(int argc, char **argv) {
       ptoken_t t = lexer_get_token();
       while (t.type != TOK_EOF) {
         if (t.type == TOK_ERROR) {
-          printf("%s: %s:%lu: ", basename(argv[0]), file, t.line + 1);
+          printf("%s: %s: %lu: ", basename(argv[0]), file, t.line + 1);
         } else {
-          printf("%d: ", t.type);
+          printf("%s : ", token_name(t.type));
         }
         for (size_t i = 0; i < t.len; i++) {
           putchar(*(t.start+i));
